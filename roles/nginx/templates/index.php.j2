@@ -3,22 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Document - {{ hostname }}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+      color: #333;
+    }
+    header {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    article {
+      background-color: #fff;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    h1{
+      margin: 0;
+    }
+    
+    h2 {
+      color: #007bff;
+    }
+    code {
+      background-color: #f8f9fa;
+      padding: 5px;
+      border-radius: 5px;
+      display: block;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
 
-  <h1>It works!</h1>
-  <p>This is the default web page for this server.</p>
-  <p>The web server software is running but no content has been added, yet.</p>
-  
-  <article>
-    <h2>
-      Database connection
-    </h2>
+  <header>
+    <h1>Ansible Project</h1>
+    <small>
+      {{ hostname }}
+    </small>
+  </header>
 
+<!-- Uncomment this section to display ansible variables
+  <article>
+    <h2>Ansible variables</h2>
+    <table>
+      <tr>
+        <td><strong>Hostname</strong></td>
+        <td>{{ hostname }}</td>
+      </tr>
+      <tr>
+        <td><strong>db_root_password</strong></td>
+        <td>{{ db_root_password }}</td>
+      </tr>
+      <tr>
+        <td><strong>db_user</strong></td>
+        <td>{{ db_user }}</td>
+      </tr>
+      <tr>
+        <td><strong>db_password</strong></td>
+        <td>{{ db_password }}</td>
+      </tr>
+    </table>
+  </article>
+-->
+
+  <article>
+    <h2>Database Connection</h2>
     <code>
       <?php
-        $mysqli = new mysqli("localhost", "root", "{{ db_password }}", "ansible");
+        $mysqli = new mysqli("localhost", "{{ db_user }}", "{{ db_password }}", "ansible");
         if ($mysqli -> connect_errno) {
           echo 'Error: Unable to connect to MySQL.';
           exit();

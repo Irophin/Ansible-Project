@@ -6,4 +6,10 @@ all:
     ansible_02:
       ansible_host: 192.168.140.84
       ansible_user: debian
-      
+  children:
+    production:
+      hosts:
+        ansible_01:
+    staging:
+      hosts:
+        ansible_02:
