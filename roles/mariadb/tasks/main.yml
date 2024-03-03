@@ -1,0 +1,28 @@
+---
+- name: Install MariaDB and python3-pymysql
+  ansible.builtin.apt:  
+    name: "{{ item }}"
+    update_cache: yes
+    state: latest
+  loop:
+    - mariadb-server
+    - python3-pymysql
+
+- name: Change MySQL root password
+  ansible.builtin.mysql_user:
+    name: root
+    password: "{{ db_password }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    column_case_sensitive: true
+  
+- name: Create mariadb configuration file
+  ansible.builtin.template: 
+    src: my.cnf.j2
+    dest: "~/.my.cnf"
+  notify:
+    - restart mariadb
+
+- name: Create database
+  ansible.builtin.mysql_db:
+    name: ansible
+    state: present

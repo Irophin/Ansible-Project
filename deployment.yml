@@ -1,7 +1,11 @@
 ---
 
-- name: "ping all hosts"
+- name: Configure proxy, mariadb, nginx, and php-fpm
   hosts: all
-  tasks:
-    - name: "ping all hosts"
-      ansible.builtin.ping:
+  become: true
+  
+  roles:
+    - proxy
+    - mariadb
+    - nginx
+    - php-fpm

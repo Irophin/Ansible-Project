@@ -1,0 +1,22 @@
+---
+- name: Install Nginx web server
+  ansible.builtin.apt:  
+    name: nginx
+    update_cache: yes
+    state: latest
+
+- name: Copy nginx configuration
+  ansible.builtin.template: 
+    src: default.conf.j2
+    dest: /etc/nginx/sites-available/default
+  notify: restart nginx
+
+- name: Clear project files
+  ansible.builtin.file:
+    path: /var/www/html/*
+    state: absent
+
+- name: Copy project files
+  ansible.builtin.template:
+    src: index.php.j2
+    dest: /var/www/html/index.php

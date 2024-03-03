@@ -1,0 +1,10 @@
+---
+- name: Install php and dependencies
+  ansible.builtin.apt:  
+    name: "{{ item }}"
+    update_cache: yes
+    state: latest
+  loop:
+    - php7.4
+    - php7.4-fpm
+    - php7.4-mysql

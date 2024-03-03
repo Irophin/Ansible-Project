@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <h1>It works!</h1>
+  <p>This is the default web page for this server.</p>
+  <p>The web server software is running but no content has been added, yet.</p>
+  
+  <article>
+    <h2>
+      Database connection
+    </h2>
+
+    <code>
+      <?php
+        $mysqli = new mysqli("localhost", "root", "{{ db_password }}", "ansible");
+        if ($mysqli -> connect_errno) {
+          echo 'Error: Unable to connect to MySQL.';
+          exit();
+        }
+
+        echo 'Success: A proper connection to MySQL was made!';
+        mysql_close($link);
+      ?>
+    </code>
+
+  </article>
+
+</body>
+</html>
