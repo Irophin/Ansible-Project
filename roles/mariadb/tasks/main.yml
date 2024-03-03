@@ -19,7 +19,7 @@
     column_case_sensitive: true
   tags:
     - database
-    - db_initialisation
+    - db_init
   
 - name: Create mariadb configuration file
   ansible.builtin.template: 
@@ -29,7 +29,7 @@
     - restart mariadb
   tags:
     - database
-    - db_initialisation
+    - db_init
 
 - name: Create database
   community.mysql.mysql_db:
@@ -37,7 +37,7 @@
     state: present
   tags:
     - database
-    - db_initialisation
+    - db_init
 
 - name: Create user
   community.mysql.mysql_user:
@@ -47,4 +47,4 @@
     column_case_sensitive: true
   tags:
     - database
-    - db_initialisation
+    - db_init
