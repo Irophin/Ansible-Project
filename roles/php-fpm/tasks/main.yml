@@ -8,3 +8,6 @@
     - php7.4
     - php7.4-fpm
     - php7.4-mysql
+  tags:
+    - dependencies
+    - webapp

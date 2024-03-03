@@ -4,19 +4,30 @@
     name: nginx
     update_cache: yes
     state: latest
+  tags:
+    - dependencies
+    - webapp
 
 - name: Copy nginx configuration
   ansible.builtin.template: 
     src: default.conf.j2
     dest: /etc/nginx/sites-available/default
   notify: restart nginx
+  tags:
+    - webapp
 
 - name: Clear project files
   ansible.builtin.file:
     path: /var/www/html/*
     state: absent
+  tags:
+    - deploy
+    - webapp
 
 - name: Copy project files
   ansible.builtin.template:
     src: index.php.j2
     dest: /var/www/html/index.php
+  tags:
+    - deploy
+    - webapp

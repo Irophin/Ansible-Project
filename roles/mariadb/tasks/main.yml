@@ -7,29 +7,44 @@
   loop:
     - mariadb-server
     - python3-pymysql
+  tags:
+    - dependencies
+    - database
 
 - name: Change MySQL root password
   community.mysql.mysql_user:
     name: root
-    password: "{{ db_password }}"
+    password: '{{ db_root_password }}'
     login_unix_socket: /var/run/mysqld/mysqld.sock
     column_case_sensitive: true
+  tags:
+    - database
+    - db_initialisation
   
 - name: Create mariadb configuration file
   ansible.builtin.template: 
     src: my.cnf.j2
-    dest: "~/.my.cnf"
+    dest: '~/.my.cnf'
   notify:
     - restart mariadb
+  tags:
+    - database
+    - db_initialisation
 
 - name: Create database
   community.mysql.mysql_db:
     name: ansible
     state: present
+  tags:
+    - database
+    - db_initialisation
 
 - name: Create user
   community.mysql.mysql_user:
-    name: "{{ db_user }}"
-    password: "{{ db_password }}"
-    priv: "ansible.*:ALL"
+    name: '{{ db_user }}'
+    password: '{{ db_password }}'
+    priv: 'ansible.*:ALL'
     column_case_sensitive: true
+  tags:
+    - database
+    - db_initialisation

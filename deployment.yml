@@ -1,6 +1,6 @@
 ---
 
-- name: Configure proxy, mariadb, nginx, and php-fpm
+- name: Deploy the webapp and database
   hosts: all
   become: true
   
