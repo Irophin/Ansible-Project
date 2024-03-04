@@ -12,7 +12,7 @@
   <p>
     This project is an <strong>Ansible</strong> deployment aimed at setting up a web server.
     </br>
-    It leverages the IUT <strong>OpenStack</strong> infrastructure to host a straightforward web application connected to a database.
+    It leverages the IUT <strong>OpenStack</strong> infrastructure to host a <strong>WordPress</strong> application connected to a database.
   </p>
 
   <div>
@@ -70,7 +70,7 @@ ansible-playbook deployment.yml --tags
   ├── webapp       # Deploy the web server
   ├── database     # Deploy the database
   │   └── db_init  # Initialize the database [Update root password, create new database, create new user]
-  └── deploy       # Update the webapp folder
+  └── cleanup      # Destroy database and webapp folder
 
 ```
 

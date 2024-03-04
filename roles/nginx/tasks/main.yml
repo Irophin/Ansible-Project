@@ -15,19 +15,3 @@
   notify: restart nginx
   tags:
     - webapp
-
-- name: Clear project files
-  ansible.builtin.file:
-    path: /var/www/html/*
-    state: absent
-  tags:
-    - deploy
-    - webapp
-
-- name: Copy project files
-  ansible.builtin.template:
-    src: index.php.j2
-    dest: /var/www/html/index.php
-  tags:
-    - deploy
-    - webapp

@@ -31,6 +31,14 @@
     - database
     - db_init
 
+- name: Clear database
+  community.mysql.mysql_db:
+    name: ansible
+    state: absent
+  tags:
+    - never
+    - cleanup
+
 - name: Create database
   community.mysql.mysql_db:
     name: ansible

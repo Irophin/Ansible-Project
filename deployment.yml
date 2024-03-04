@@ -9,3 +9,4 @@
     - mariadb
     - nginx
     - php-fpm
+    - wordpress

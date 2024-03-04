@@ -1,0 +1,34 @@
+---
+
+- name: Install git
+  ansible.builtin.apt:  
+    name: git
+    update_cache: yes
+    state: latest
+  tags:
+    - dependencies
+    - webapp
+
+- name: Clear project files
+  ansible.builtin.file:
+    path: /var/www/html/
+    state: absent
+  tags:
+    - never
+    - cleanup
+
+- name: Clone WordPress repository
+  ansible.builtin.git:
+    repo: https://github.com/WordPress/WordPress.git
+    dest: /var/www/html/
+  tags:
+    - webapp
+
+- name: Copy wp-config.php
+  ansible.builtin.template:
+    src: wp-config.php.j2
+    dest: /var/www/html/wp-config.php
+    mode: '0644'
+  tags:
+    - webapp
+  
