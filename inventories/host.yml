@@ -1,0 +1,15 @@
+all:
+  hosts:
+    ansible_01:
+      ansible_host: 192.168.140.168
+      ansible_user: debian
+    ansible_02:
+      ansible_host: 192.168.140.63
+      ansible_user: debian
+  children:
+    production:
+      hosts:
+        ansible_01:
+    staging:
+      hosts:
+        ansible_02:

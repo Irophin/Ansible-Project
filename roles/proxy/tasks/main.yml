@@ -1,0 +1,7 @@
+---
+- name: run proxy config
+  ansible.builtin.script:
+    cmd: proxy.sh
+    creates: /etc/apt/apt.conf.d/proxy
+  tags:
+    - always

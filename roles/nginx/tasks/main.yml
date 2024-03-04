@@ -1,0 +1,24 @@
+---
+- name: Install Nginx web server
+  ansible.builtin.apt:  
+    name: nginx
+    update_cache: yes
+    state: latest
+  tags:
+    - dependencies
+    - webapp
+
+- name: stop and disable apache2
+  ansible.builtin.service:
+    name: apache2
+    state: stopped
+    enabled: no
+
+- name: Copy nginx configuration
+  ansible.builtin.template: 
+    src: default.conf.j2
+    dest: /etc/nginx/sites-available/default
+  tags:
+    - webapp
+  notify: 
+    - restart_nginx

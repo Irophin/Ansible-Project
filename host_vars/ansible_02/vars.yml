@@ -1,0 +1,6 @@
+hostname: ansible-02-{{stage}}
+
+db_root_password: '{{ vault_db_root_password }}'
+
+db_password: '{{ vault_db_password }}'
+db_user: 'user-02'
