@@ -1,5 +1,4 @@
 ---
-
 - name: Deploy the webapp and database
   hosts: all
   become: true
@@ -7,6 +6,6 @@
   roles:
     - proxy
     - mariadb
-    - nginx
     - php-fpm
+    - nginx
     - wordpress

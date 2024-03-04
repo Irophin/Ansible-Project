@@ -64,8 +64,8 @@ To deploy the project, run the following command:
 # Deploy the entire project
 ansible-playbook deployment.yml
 
-# Specific tags can be used to deploy only a part of the project
-ansible-playbook deployment.yml --tags
+# Specific tags can be used or skipped to deploy only a part of the project
+ansible-playbook deployment.yml --tags|--skip-tags 
   ├── dependencies # Install and update dependencies
   ├── webapp       # Deploy the web server
   ├── database     # Deploy the database

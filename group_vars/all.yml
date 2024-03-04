@@ -1,3 +1,10 @@
 # Default values for all groups
 
 stage: default
+
+php:
+  config:
+    max_execution_time: 360
+    memory_limit: 256M
+    upload_max_filesize: 20M
+    post_max_size: 25M

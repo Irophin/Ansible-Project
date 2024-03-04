@@ -11,7 +11,7 @@
 
 - name: Clear project files
   ansible.builtin.file:
-    path: /var/www/html/
+    path: /var/www/wordpress
     state: absent
   tags:
     - never
@@ -20,15 +20,18 @@
 - name: Clone WordPress repository
   ansible.builtin.git:
     repo: https://github.com/WordPress/WordPress.git
-    dest: /var/www/html/
+    dest: /var/www/wordpress
+    depth: 1
   tags:
     - webapp
 
 - name: Copy wp-config.php
   ansible.builtin.template:
     src: wp-config.php.j2
-    dest: /var/www/html/wp-config.php
+    dest: /var/www/wordpress/wp-config.php
     mode: '0644'
   tags:
     - webapp
+  notify: 
+    - restart_nginx
   
